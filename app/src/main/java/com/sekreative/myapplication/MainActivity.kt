@@ -1,12 +1,14 @@
 package com.sekreative.myapplication
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), Interface{
+class MainActivity : AppCompatActivity(), View.OnClickListener{
 
-    override var myVar: String = "Worked!"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,11 +16,15 @@ class MainActivity : AppCompatActivity(), Interface{
 
         updateButton.setOnClickListener { welcomeTextView.text = "Kotlin is so Easy!" }
 
-        hello()
+        updateButton2.setOnClickListener(this) // Button using the onClickListener Interface
     }
 
-    override fun hello() {
-        updateButton2.setOnClickListener { welcomeTextView.text = "Interface " + myVar}
+
+    override fun onClick(v: View?) {
+
+        when(v?.id){
+            R.id.updateButton2 -> welcomeTextView.text = "YES! Very Easy!"
+        }
     }
 }
 
